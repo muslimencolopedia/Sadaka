@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صدقة جارية </title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: right;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        body.dark-mode header {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            animation: fadeInDown 1s ease;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        nav ul li a:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+        }
+        body.dark-mode nav ul li a:hover {
+            background-color: #444;
+        }
+        main {
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        body.dark-mode .section {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+        }
+        body.dark-mode .btn {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        body.dark-mode .btn:hover {
+            background-color: #444;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        body.dark-mode footer {
+            background-color: #121212;
+        }
+        .dark-mode-toggle {
+            background-color: #333;
+            color: #e0e0e0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            background-color: #444;
+        }
+        .daily-quote {
+            display: none;
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+        body.dark-mode .daily-quote {
+            color: #76ff03;
+        }
+        .counter {
+            font-size: 2em;
+            color: #4CAF50;
+            text-align: center;
+            margin: 20px 0;
+        }
+        body.dark-mode .counter {
+            color: #76ff03;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>صدقة جارية - للاستاذ - محمد كامل</h1>
+        <nav>
+            <ul>
+                <li><a href="#intro">الرئيسية</a></li>
+                <li><a href="#about">عن المتوفى</a></li>
+                <li><a href="#content">المحتوى الديني</a></li>
+                <li><a href="#daily-prayer">أذكار يومية</a></li>
+            </ul>
+        </nav>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">تبديل الوضع</button>
+    </header>
+
+    <main>
+        <section id="intro" class="section">
+            <h2>مرحبا بكم</h2>
+            <p>هذا الموقع تم إنشاؤه كصدقة جارية للمرحوم  محمد كامل , نسأل الله أن يتقبل منا ومنكم صالح الأعمال.</p>
+            <a href="#daily-prayer" class="btn">اكتشف الأذكار اليومية</a>
+        </section>
+
+        <section id="about" class="section">
+            <h2>عن المرحوم محمد كامل</h2>
+            <p>الاسم / الاستاذ محمد كامل محمد أحمد
+              <br>
+              مواليد ١٩٧٣ 
+              <br>
+             محافظة المنيا مركز مطاي ابن قريه عباس رحمي
+               مدرس تربيه رياضيه سابقا 
+               <br>
+              والان أصبح مدير مدرسه عباس رحمي 
+             دائما بيسعي للخير وحل المشاكل شخصية جميله جدا وبسيطة واجتماعية ومحترمة وبشوشه  عنده بنته الكبيرة في الجامعة وابن ثانوية عامة وابن في الابتدائيه </p>
+        </section>
+
+        <section id="content" class="section">
+            <h2>المحتوى الديني</h2>
+            <div class="grid-container">
+                <div>
+                    <h3>القران الكريم</h3>
+                    <ul>
+                        <li><a href="https://youtu.be/pUb9EW770d0?si=sfVthyh4LAN7qoBw"> الفاتحه</a></li>
+                        <li><a href="https://www.youtube.com/live/qPETHvRyXjk?si=ggRRGpngcE_XnYXe"> البقره</a></li>
+                        <li><a href="https://youtu.be/7Y8kclmSZok?si=CBrOU5KYhZd0O843"> ال عمران</a></li>
+                    </ul>
+                    <hr>
+                    <video controls src="/Videos/MohamedReda.mp4" style="width: 40%;"></video>
+                    <video controls src="/Videos/Facebook 149571211486520(Source).mp4" style="width: 40%;"></video>
+                    <video controls src="/Videos/VID_20231203_011654_354.mp4" style="width: 40%;"></video>
+                    <video controls src="/Videos/VID_20240220_183826_542.mp4" style="width: 40%;"></video>
+                    <video controls src="/Videos/VID_20240220_194747_376.mp4" style="width: 40%;"></video>
+                    <video controls src="/Videos/VID_20240705_223428_561.mp4" style="width: 40%;"></video>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="daily-prayer" class="section">
+            <h2>أذكار يومية</h2>
+            <p>اضغط على الزر أدناه للحصول على ذكر يومي.</p>
+            <button class="btn" onclick="showDailyQuote()">احصل على ذكر</button>
+            <p class="daily-quote" id="dailyQuote"></p>
+        </section>
+
+        <section id="quranic-verses" class="section">
+            <h2>آيات قرآنية</h2>
+            <p>قُلْ هُوَ اللَّهُ أَحَدٌ</p>
+            <p>اللَّهُ الصَّمَدُ</p>
+            <p>لَمْ يَلِدْ وَلَمْ يُولَدْ</p>
+            <p>وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</p>
+        </section>
+
+        <section id="electronic-rosary" class="section">
+            <h2>المسبحة الإلكترونية</h2>
+            <div class="counter" id="rosaryCounter">0</div>
+            <button class="btn" onclick="incrementCounter('rosaryCounter')">عد</button>
+            <button class="btn" onclick="resetCounter('rosaryCounter')">إعادة تعيين</button>
+        </section>
+
+        <section id="salat-ala-nabi" class="section">
+            <h2>الصلاة على النبي</h2>
+            <div class="counter" id="salatCounter">0</div>
+            <button class="btn" onclick="incrementCounter('salatCounter')">عد</button>
+            <button class="btn" onclick="            resetCounter('salatCounter')">إعادة تعيين</button>
+          </section>
+          <br>
+          <br>
+      </main>
+  
+      <footer>
+          <p>&copy; Mohamed Reda 2024 جميع الحقوق محفوظة</p>
+      </footer>
+  
+      <script>
+          const quotes = [
+              "سبحان الله وبحمده سبحان الله العظيم",
+              "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير",
+              "اللهم صل وسلم على نبينا محمد",
+              "لا حول ولا قوة إلا بالله",
+              "أستغفر الله العظيم"
+          ];
+  
+          function showDailyQuote() {
+              const quote = quotes[Math.floor(Math.random() * quotes.length)];
+              const dailyQuoteElement = document.getElementById('dailyQuote');
+              dailyQuoteElement.textContent = quote;
+              dailyQuoteElement.style.display = 'block';
+              dailyQuoteElement.style.opacity = '0';
+              setTimeout(() => {
+                  dailyQuoteElement.style.opacity = '1';
+                  dailyQuoteElement.style.transition = 'opacity 1s ease-in-out';
+              }, 10);
+          }
+  
+          function toggleDarkMode() {
+              document.body.classList.toggle('dark-mode');
+          }
+  
+          function incrementCounter(counterId) {
+              const counterElement = document.getElementById(counterId);
+              let count = parseInt(counterElement.textContent);
+              count++;
+              counterElement.textContent = count;
+          }
+  
+          function resetCounter(counterId) {
+              const counterElement = document.getElementById(counterId);
+              counterElement.textContent = '0';
+          }
+  
+          // Display Salat 'ala Muhammad on page load for 3 seconds
+          window.onload = function() {
+              const salatMessage = document.createElement('div');
+              salatMessage.textContent = "اللهم صل على محمد";
+              salatMessage.style.position = 'fixed';
+              salatMessage.style.top = '50%';
+              salatMessage.style.left = '50%';
+              salatMessage.style.transform = 'translate(-50%, -50%)';
+              salatMessage.style.fontSize = '2em';
+              salatMessage.style.backgroundColor = '#4CAF50';
+              salatMessage.style.color = 'white';
+              salatMessage.style.padding = '20px';
+              salatMessage.style.borderRadius = '10px';
+              salatMessage.style.zIndex = '1000';
+              document.body.appendChild(salatMessage);
+  
+              setTimeout(() => {
+                  salatMessage.style.transition = 'opacity 1s ease';
+                  salatMessage.style.opacity = '0';
+                  setTimeout(() => {
+                      salatMessage.remove();
+                  }, 1000);
+              }, 3000);
+          }
+      </script>
+  </body>
+  </html>
+  
